@@ -37,12 +37,16 @@ app.use((error, req, res, next) => {
   });
 });
 
-
-
 mongoose.set("strictQuery", true);
 
 mongoose
-  .connect("mongodb://127.0.0.1:27017/internshipsdb")
+  .connect(
+    "mongodb+srv://" +
+      process.env.DB_USER +
+      ":" +
+      process.env.DB_PASSWORD +
+      "@cluster-gestion-de-stag.b2wvhmb.mongodb.net/?retryWrites=true&w=majority"
+  )
   .then(() => {
     app.listen(5000);
     console.log("Successfully connected to the data base");
